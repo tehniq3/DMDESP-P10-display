@@ -13,7 +13,8 @@
 #include <DMDESP.h>   //  https://github.com/busel7/DMDESP/
 #include <fonts/EMKotak5x7.h>
 #include <fonts/EMSans8x16.h>
-#include <fonts/Font_6x14niqro.h> //-> This font only contains numbers from 0-9. Used only to display time, font downloaded from https://www.youtube.com/watch?v=-WQuz01Ml80
+#include <fonts/Font_6x14niqro.h> // Original font file only contains numbers from 0-9. Used only to display time, font downloaded from https://www.youtube.com/watch?v=-WQuz01Ml80
+                                  // File changed by niq_ro to be space instead ; and C instead : 
 
 #define FontDefault EMKotak5x7
 //#define FontBig EMSans8x16
@@ -86,14 +87,14 @@ void loop() {
   Det = timeClient.getSeconds();
 
  dmd.setFont(FontBig);
-if (Hour/10 == 0) dmd.drawChar(x,y, ' ');
+if (Hour/10 == 0) dmd.drawChar(x,y, ';'); // just for Font_6x14niqro.h ; is space and : is C
 else
 {
-dmd.drawChar(x,y, ' ');
+dmd.drawChar(x,y, ';');
 dmd.drawChar(x,y, 48+Hour/10);
 }
 
-dmd.drawChar(x+7,y, ' ');
+dmd.drawChar(x+7,y, ";');
 dmd.drawChar(x+7,y, 48+Hour%10);
 
 if (millis()/1000%2 == 1)
@@ -107,15 +108,16 @@ dmd.drawLine(x+15+tip%2,y+7,x+15+tip%2,y+8);
 else
 {
 dmd.setFont(FontDefault);
-dmd.drawText(13,2," "); 
+dmd.drawText(13,2,";"); 
 }
 
  dmd.setFont(FontBig);
-dmd.drawChar(x+19,y, ' ');  
+dmd.drawChar(x+19,y, ';');  
 dmd.drawChar(x+19,y, 48+Minut/10);
 
-dmd.drawChar(x+26,y, ' '); 
+dmd.drawChar(x+26,y, ';'); 
 dmd.drawChar(x+26,y, 48+Minut%10);
  
   dmd.loop();
 }   // end main loop
+
